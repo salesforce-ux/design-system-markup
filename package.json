@@ -1,0 +1,32 @@
+{
+  "name": "@salesforce-ux/design-system-markup",
+  "version": "0.0.1",
+  "description": "",
+  "scripts": {
+    "test": "jest",
+    "lint": "standard"
+  },
+  "dependencies": {
+    "cheerio": "^0.22.0",
+    "immutable": "^3.8.1",
+    "js-beautify": "^1.6.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-plugin-transform-react-jsx": "^6.22.0",
+    "jest": "^18.0.0",
+    "standard": "^8.6.0"
+  },
+  "standard": {
+    "ignore": [
+      "__fixtures__/**/*"
+    ],
+    "globals": [
+      "describe",
+      "it",
+      "before",
+      "beforeEach",
+      "expect"
+    ]
+  }
+}

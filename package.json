@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "cheerio": "^0.22.0",
-    "data.either": "^1.5.0",
+    "data.either": "https://github.com/folktale/data.either",
     "immutable": "^3.8.1",
     "js-beautify": "^1.6.4"
   },

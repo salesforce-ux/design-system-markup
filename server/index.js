@@ -8,13 +8,7 @@ const createValidator = comments => markup => {
     .filter((i, x) => x.type === 'tag')
     .first()
     .get(0)
-  const print = element => {
-    return $.html($(element).clone().empty())
-      .replace(/<\/.+?>/, '')
-  }
-  return validate(comments, $, rootNode).map(error =>
-    error.update('element', print)
-  )
+  return validate(comments, $, rootNode)
 }
 
 module.exports = {

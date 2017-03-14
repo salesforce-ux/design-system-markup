@@ -7,17 +7,14 @@
 3. To validate an element
   * Validate normal slds selectors
     * Extract classNames off the element
-    * Filter any className that is part of our `commentsBySelector` i.e. part of our system
-    * Map those into their cooresponding comments
-    * For each comment, get the restrict and use it on the element, and return a list of results: {valid: false, element, restrict} || null
-    * Filter only the invalid
+    * Try to get the comment corresponding to the className i.e. that is part of our `commentsBySelector` i.e. part of our system
+    * For each comment, get the restrict and use it on the element, and return a list of results: {valid: false, element, restrict} || null, but keep the first success since there may be many comments with the same selector.
   * Validate the "fancy" selectors
-    * hack: remove focus for cheerio's sanity
-    * throw away the map structure
-    * For every comment in "fancy", apply the selector and see if it actually applies since we cannot look up by classname
-    * validate like above where we just apply the restrict to each element found
+    * hack: remove things that break cheerio
+    * throw away the map structure and just get the comments since we don't need it
+    * For every comment in "fancy", apply the selector to the dom find all elements
+    * validate like above where we just apply the restrict to each element found and keep the first success
+  * Finally filter only the invalid, make the elements html, and add line numbers
 
 4. To validate the whole tree
   * Validate the root, then flatMap validate the children
-
-

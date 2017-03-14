@@ -1,6 +1,6 @@
 {
   "name": "@salesforce-ux/design-system-markup",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "",
   "scripts": {
     "test": "jest",
@@ -10,6 +10,7 @@
     "cheerio": "^0.22.0",
     "data.either": "https://github.com/folktale/data.either",
     "immutable": "^3.8.1",
+    "immutable-ext": "^1.0.8",
     "js-beautify": "^1.6.4"
   },
   "devDependencies": {

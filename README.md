@@ -1,7 +1,6 @@
 # Validation
 
-1. We set up `commentsBySelector` which is a map of every selector (even , separated ones) pointing to the comment. (e.g. @selector .slds-button, button => {button: comment, .slds-button: comment})
-* This looks like it will overwrite things. Prob best to do []
+1. We set up `commentsBySelector` which is a map of every selector (even , separated ones) pointing to a list of matching comments. (e.g. ".slds-button, button" => Map({button: comments, .slds-button: comments}))
 
 2. We partition `commentsBySelector` into two submaps (`commentsByClass` and `commentsByFancy`) by matching `.slds-` on each key
 

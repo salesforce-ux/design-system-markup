@@ -1,16 +1,21 @@
 const cheerio = require('cheerio')
 
 const validate = require('../lib/validate')
+const applyModifiers = require('../lib/modifiers')
 
-const createValidator = comments => markup => {
-  const $ = cheerio.load(markup)
-  const rootNode = $.root().children()
+const getRoot = $ =>
+  $.root().children()
     .filter((i, x) => x.type === 'tag')
     .first()
     .get(0)
-  return validate(comments, $, rootNode)
-}
 
 module.exports = {
-  createValidator
+  createValidator: comments => markup => {
+    const $ = cheerio.load(markup)
+    return validate(comments, $, getRoot($))
+  },
+  applyModifiers: (modifiers, markup) => {
+    const $ = cheerio.load(markup)
+    return applyModifiers(modifiers, $, $.root())
+  }
 }

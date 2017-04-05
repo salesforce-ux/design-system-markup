@@ -1,6 +1,6 @@
 {
   "name": "@salesforce-ux/design-system-markup",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "",
   "scripts": {
     "test": "jest",

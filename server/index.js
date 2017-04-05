@@ -1,3 +1,4 @@
+const I = require('immutable')
 const cheerio = require('cheerio')
 
 const validate = require('../lib/validate')
@@ -10,12 +11,12 @@ const getRoot = $ =>
     .get(0)
 
 module.exports = {
-  createValidator: comments => markup => {
+  createValidator: validations => markup => {
     const $ = cheerio.load(markup)
-    return validate(comments, $, getRoot($))
+    return validate(I.fromJS(validations), $, getRoot($)).toJS()
   },
   applyModifiers: (modifiers, markup) => {
     const $ = cheerio.load(markup)
-    return applyModifiers(modifiers, $, $.root())
+    return applyModifiers(I.fromJS(modifiers), $, $.root()).toJS()
   }
 }

@@ -1,4 +1,70 @@
-# Validation
+# Design System Markup
+
+This is a markup generator and validator. Currently it is used by previewer and design-system-site to apply modifiers to html. It is also used by previewer, design-system-internal, and chrome-ext for validation.
+
+
+# Usage
+
+`npm install`
+
+
+## Validation
+
+```js
+const {createValidator} = require('./server') // or require('./browser')
+
+const validations = [
+  {selector: '.slds-button', restrict: 'button, a'},
+  {selector: '.slds-button--brand', restrict: '.slds-button'},
+  {selector: '.slds-button--reset', restrict: '[class~=slds-button]'}
+]
+
+const validate = createValidator(validations)
+
+const html = `
+  <div>
+    <span class="slds-button" />
+  </div>
+`
+
+validate(html)
+// [ { selector: '.slds-button',
+//  restrict: 'button, a',
+//  element: '<span class="slds-button">',
+//  valid: false,
+//  lines: [ 1 ] } ]
+```
+
+The only non-self explanitory part is that lines is an array of occurences.
+
+
+## Modifier application
+
+```js
+const {applyModifiers} = require('../server')
+
+const modifiers = [
+  {selector: '.slds-button--reset', restrict: '[class~=slds-button]'},
+  {selector: '.slds-button--brand', restrict: '.slds-button', group: 'theme'},
+  {selector: '.slds-button--destructive', restrict: '.slds-button', group: 'theme'}
+]
+
+const html = `
+  <button class="slds-button" />
+`
+const results = applyModifiers([modifiers[1]], html)
+results.markup
+// <button class="slds-button slds-button--brand"></button>
+```
+
+Modifiers apply to their restrict. Group is an "exclusive or" so only the last modifier in the group will be applied if there are multiple occurrences.
+
+## Browser/Server
+
+This project includes an adapter to pair cheerio with a browser dom. Why cheerio is not already paired is beyond me.
+
+
+# Validation code walkthrough
 
 1. We set up `commentsBySelector` which is a map of every selector (even , separated ones) pointing to a list of matching comments. (e.g. ".slds-button, button" => Map({button: comments, .slds-button: comments}))
 

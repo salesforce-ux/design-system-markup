@@ -84,3 +84,6 @@ This project includes an adapter to pair cheerio with a browser dom. Why cheerio
 
 4. To validate the whole tree
   * Validate the root, then flatMap validate the children
+
+## Licenses
+Source code is licensed under [BSD 3-Clause](https://git.io/sfdc-license)

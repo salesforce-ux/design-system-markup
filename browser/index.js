@@ -5,6 +5,9 @@ const validate = require('../lib/validate')
 
 const $ = node => new BrowserDOM(node)
 
+$.html = wrapper =>
+  wrapper.extract().outerHTML // hack
+
 const createValidator = validations => rootNode =>
   validate(I.fromJS(validations), $, rootNode).toJS()
 

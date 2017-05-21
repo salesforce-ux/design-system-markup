@@ -24,7 +24,7 @@ describe('validations', () => {
     `
     const results = validate(html)
     const result = results[0]
-    expect(result.element).toEqual('<div class="slds-button">')
+    expect(result.elementString).toEqual('<div class="slds-button">')
     expect(result.restrict).toEqual('button, a')
     expect(result.selector).toEqual('.slds-button')
     expect(result.valid).toBe(false)
@@ -40,8 +40,8 @@ describe('validations', () => {
     `
     const results = validate(html)
     expect(results.length).toBe(2)
-    expect(results[0].element).toEqual('<div class="slds-button--brand">')
-    expect(results[1].element).toEqual('<div class="slds-button">')
+    expect(results[0].elementString).toEqual('<div class="slds-button--brand">')
+    expect(results[1].elementString).toEqual('<div class="slds-button">')
     expect(results[0].lines).toEqual([1])
     expect(results[1].lines).toEqual([2])
   })

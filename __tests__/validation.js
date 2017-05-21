@@ -4,7 +4,9 @@ const validations = [
   {selector: '.slds-button', restrict: 'button, a'},
   {selector: '.slds-button--brand', restrict: '.slds-button'},
   {selector: '.slds-button--reset', restrict: '[class~=slds-button]'},
-  {selector: '.slds-button--destructive'}
+  {selector: '.slds-button--destructive'},
+  {selector: '.slds-is-selected', restrict: '.slds-button_icon'},
+  {selector: '.slds-is-selected', restrict: '.slds-button_stateful'}
 ]
 
 const validate = createValidator(validations)
@@ -63,7 +65,19 @@ describe('validations', () => {
       </div>
     `
     const results = validate(html)
-    console.log(results)
     expect(results.length).toBe(0)
+  })
+
+  it('shows all possible restricts when the selector has multiple possibilities', () => {
+    const html = `
+      <div>
+        <a class="slds-is-selected"></a>
+      </div>
+    `
+    const results = validate(html)
+    expect(results.length).toBe(1)
+    expect(results[0].elementString).toEqual('<a class="slds-is-selected">')
+    expect(results[0].lines).toEqual([1])
+    expect(results[0].restrict).toEqual('.slds-button_icon, .slds-button_stateful')
   })
 })

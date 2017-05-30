@@ -13,6 +13,12 @@ const createValidator = validations => rootNode =>
 
 module.exports = {
   createValidator,
+
   applyModifiers: (modifiers, rootNode) =>
-    applyModifiers(I.fromJS(modifiers), $, rootNode).toJS()
+    applyModifiers(I.fromJS(modifiers), $, rootNode).toJS(),
+
+  removeModifiers: (modifiers, markup) => {
+    console.log('yo')
+    return I.List()
+  }
 }

@@ -10,7 +10,6 @@ const getRoot = $ =>
     .first()
     .get(0)
 
-
 module.exports = {
   createValidator: validations => markup => {
     const $ = cheerio.load(markup)
@@ -19,5 +18,9 @@ module.exports = {
   applyModifiers: (modifiers, markup) => {
     const $ = cheerio.load(markup)
     return applyModifiers(I.fromJS(modifiers), $, $.root()).toJS()
+  },
+  removeModifiers: (modifiers, markup) => {
+    console.log('yo')
+    return I.List()
   }
 }

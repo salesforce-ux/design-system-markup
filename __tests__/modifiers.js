@@ -1,4 +1,4 @@
-const {applyModifiers} = require('../server')
+const {applyModifiers, removeModifiers} = require('../server')
 
 const modifiers = [
   {selector: '.slds-button--reset', restrict: '[class~=slds-button]'},
@@ -27,13 +27,14 @@ describe('modifiers', () => {
     </button>`)
   })
 
-  it('removes other modifiers in the group', () => {
+  it('removes modifiers', () => {
     const html = `
-      <button class="slds-button" />
+      <button class="slds-button slds-button--brand" />
     `
-    const results = applyModifiers(modifiers, html)
+    const results = removeModifiers([modifiers[1]], html)
     expect(results.markup).toEqual(`
-      <button class="slds-button slds-button--destructive slds-button--reset">
+      <button class="slds-button">
     </button>`)
   })
+
 })

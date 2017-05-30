@@ -2,7 +2,7 @@ const I = require('immutable')
 const cheerio = require('cheerio')
 
 const validate = require('../lib/validate')
-const applyModifiers = require('../lib/modifiers')
+const {applyModifiers, removeModifiers} = require('../lib/modifiers')
 
 const getRoot = $ =>
   $.root().children()
@@ -20,7 +20,7 @@ module.exports = {
     return applyModifiers(I.fromJS(modifiers), $, $.root()).toJS()
   },
   removeModifiers: (modifiers, markup) => {
-    console.log('yo')
-    return I.List()
+    const $ = cheerio.load(markup)
+    return removeModifiers(I.fromJS(modifiers), $, $.root()).toJS()
   }
 }

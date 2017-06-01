@@ -7,7 +7,7 @@ const modifiers = [
 ]
 
 describe('modifiers', () => {
-  it('applys modifiers', () => {
+  it('applies modifiers', () => {
     const html = `
       <button class="slds-button" />
     `
@@ -17,11 +17,11 @@ describe('modifiers', () => {
     </button>`)
   })
 
-  it('applys multiple modifiers', () => {
+  it('applies multiple modifiers', () => {
     const html = `
       <button class="slds-button" />
     `
-    const results = applyModifiers([modifiers[1], modifiers[0]], html)
+    const results = applyModifiers([modifiers[0], modifiers[1]], html)
     expect(results.markup).toEqual(`
       <button class="slds-button slds-button--reset slds-button--brand">
     </button>`)
@@ -35,6 +35,22 @@ describe('modifiers', () => {
     expect(results.markup).toEqual(`
       <button class="slds-button">
     </button>`)
+  })
+
+  it('applies modifiers to single element', () => {
+    const html = `
+      <div>
+        <button class="slds-button" />
+        <button class="slds-button" />
+      </div>
+    `
+    const results = applyModifiers([modifiers[1]], html, {single: true})
+    expect(results.markup).toEqual(`
+      <div>
+        <button class="slds-button slds-button--brand">
+        </button><button class="slds-button">
+      </button></div>
+    `)
   })
 
 })

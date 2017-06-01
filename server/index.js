@@ -15,12 +15,12 @@ module.exports = {
     const $ = cheerio.load(markup)
     return validate(I.fromJS(validations), $, getRoot($)).toJS()
   },
-  applyModifiers: (modifiers, markup) => {
+  applyModifiers: (modifiers, markup, options = {}) => {
     const $ = cheerio.load(markup)
-    return applyModifiers(I.fromJS(modifiers), $, $.root()).toJS()
+    return applyModifiers(I.fromJS(modifiers), $, $($.root()), options).toJS()
   },
   removeModifiers: (modifiers, markup) => {
     const $ = cheerio.load(markup)
-    return removeModifiers(I.fromJS(modifiers), $, $.root()).toJS()
+    return removeModifiers(I.fromJS(modifiers), $, $($.root())).toJS()
   }
 }

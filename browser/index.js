@@ -1,6 +1,6 @@
 const I = require('immutable')
 const BrowserDOM = require('../lib/dom')
-const applyModifiers = require('../lib/modifiers')
+const {applyModifiers, removeModifiers} = require('../lib/modifiers')
 const validate = require('../lib/validate')
 
 const $ = node => new BrowserDOM(node)
@@ -14,11 +14,9 @@ const createValidator = validations => rootNode =>
 module.exports = {
   createValidator,
 
-  applyModifiers: (modifiers, rootNode) =>
-    applyModifiers(I.fromJS(modifiers), $, rootNode).toJS(),
+  applyModifiers: (modifiers, rootNode, options = {}) =>
+    applyModifiers(I.fromJS(modifiers), $, $(rootNode), options).toJS(),
 
-  removeModifiers: (modifiers, markup) => {
-    console.log('yo')
-    return I.List()
-  }
+  removeModifiers: (modifiers, rootNode, options = {}) =>
+    removeModifiers(I.fromJS(modifiers), $, $(rootNode), options).toJS()
 }

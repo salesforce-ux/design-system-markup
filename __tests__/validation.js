@@ -44,8 +44,6 @@ describe('validations', () => {
     expect(results.length).toBe(2)
     expect(results[0].elementString).toEqual('<div class="slds-button--brand">')
     expect(results[1].elementString).toEqual('<div class="slds-button">')
-    expect(results[0].lines).toEqual([1])
-    expect(results[1].lines).toEqual([2])
   })
 
   it('works on complex selectors', () => {
@@ -77,7 +75,6 @@ describe('validations', () => {
     const results = validate(html)
     expect(results.length).toBe(1)
     expect(results[0].elementString).toEqual('<a class="slds-is-selected">')
-    expect(results[0].lines).toEqual([1])
     expect(results[0].restrict).toEqual('.slds-button_icon, .slds-button_stateful')
   })
 })

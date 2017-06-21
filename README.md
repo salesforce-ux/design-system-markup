@@ -5,7 +5,7 @@ This is a markup generator and validator. Currently it is used by previewer and 
 
 # Usage
 
-`npm install`
+`npm install @saleforce-ux/design-system-markup`
 
 
 ## Validation
@@ -44,24 +44,30 @@ The only non-self explanitory part is that lines is an array of occurences.
 const {applyModifiers} = require('../server')
 
 const modifiers = [
+  {selector: '.slds-button', restrict: 'button, a'},
   {selector: '.slds-button--reset', restrict: '[class~=slds-button]'},
-  {selector: '.slds-button--brand', restrict: '.slds-button', group: 'theme'},
-  {selector: '.slds-button--destructive', restrict: '.slds-button', group: 'theme'}
+  {selector: '.slds-button--brand', restrict: '.slds-button'},
+  {selector: '.slds-button--destructive', restrict: '.slds-button'}
 ]
 
 const html = `
   <button class="slds-button" />
 `
-const results = applyModifiers([modifiers[1]], html)
+const results = applyModifiers([modifiers[2]], html)
 results.markup
 // <button class="slds-button slds-button--brand"></button>
+
+
+const results1 = removeModifiers([modifiers[0]], html)
+results1.markup
+// <button></button>
 ```
 
-Modifiers apply to their restrict. Group is an "exclusive or" so only the last modifier in the group will be applied if there are multiple occurrences.
+Modifiers is an array of selector/restrict pairs. Selectors apply to their restrict (assertion selector).
 
 ## Browser/Server
 
-This project includes an adapter to pair cheerio with a browser dom. Why cheerio is not already paired is beyond me.
+This project includes an adapter to pair cheerio with a browser DOM.
 
 
 # Validation code walkthrough

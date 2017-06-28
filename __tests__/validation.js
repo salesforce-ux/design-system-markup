@@ -6,7 +6,9 @@ const validations = [
   {selector: '.slds-button--reset', restrict: '[class~=slds-button]'},
   {selector: '.slds-button--destructive'},
   {selector: '.slds-is-selected', restrict: '.slds-button_icon'},
-  {selector: '.slds-is-selected', restrict: '.slds-button_stateful'}
+  {selector: '.slds-is-selected', restrict: '.slds-button_stateful'},
+  {selector: '.slds-is-active', restrict: '.slds-page_header__item'},
+  {selector: '.slds-is-active', restrict: '.slds-tabs__item'}
 ]
 
 const validate = createValidator(validations)
@@ -76,5 +78,25 @@ describe('validations', () => {
     expect(results.length).toBe(1)
     expect(results[0].elementString).toEqual('<a class="slds-is-selected">')
     expect(results[0].restrict).toEqual('.slds-button_icon, .slds-button_stateful')
+  })
+
+  it('does not fail when multiple possibilities, but one is satisfied', () => {
+    const html = `
+      <div>
+        <a class="slds-button_icon slds-is-selected"></a>
+      </div>
+    `
+    const results = validate(html)
+    expect(results.length).toBe(0)
+  })
+
+  it('doesnt do that weird thing', () => {
+    const html = `
+      <div>
+        <a class="slds-tabs__item slds-is-active"></a>
+      </div>
+    `
+    const results = validate(html)
+    expect(results.length).toBe(0)
   })
 })

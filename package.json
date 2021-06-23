@@ -3,11 +3,10 @@
   "version": "2.0.2",
   "description": "",
   "scripts": {
-    "test": "jest",
+    "test": "snyk test && jest",
     "lint": "standard"
   },
   "dependencies": {
-    "cheerio": "^0.22.0",
     "data.either": "https://github.com/folktale/data.either",
     "immutable": "^3.8.1",
     "immutable-ext": "^1.0.8",
@@ -17,7 +16,9 @@
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-plugin-transform-react-jsx": "^6.22.0",
-    "jest": "^18.0.0",
+    "cheerio": "^1.0.0-rc.10",
+    "jest": "^27.0.5",
+    "snyk": "^1.643.0",
     "standard": "^8.6.0"
   },
   "standard": {

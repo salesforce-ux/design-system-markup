@@ -2,7 +2,7 @@ const I = require('immutable')
 const cheerio = require('cheerio')
 
 const validate = require('../lib/validate')
-const {applyModifiers, removeModifiers} = require('../lib/modifiers')
+const { applyModifiers, removeModifiers } = require('../lib/modifiers')
 
 const getRoot = $ =>
   $.root().children()

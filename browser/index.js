@@ -1,6 +1,6 @@
 const I = require('immutable')
 const BrowserDOM = require('../lib/dom')
-const {applyModifiers, removeModifiers} = require('../lib/modifiers')
+const { applyModifiers, removeModifiers } = require('../lib/modifiers')
 const validate = require('../lib/validate')
 
 const $ = node => new BrowserDOM(node)

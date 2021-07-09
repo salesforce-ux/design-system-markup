@@ -1,14 +1,14 @@
-const {createValidator} = require('../server')
+const { createValidator } = require('../server')
 
 const validations = [
-  {selector: '.slds-button', restrict: 'button, a'},
-  {selector: '.slds-button--brand', restrict: '.slds-button'},
-  {selector: '.slds-button--reset', restrict: '[class~=slds-button]'},
-  {selector: '.slds-button--destructive'},
-  {selector: '.slds-is-selected', restrict: '.slds-button_icon'},
-  {selector: '.slds-is-selected', restrict: '.slds-button_stateful'},
-  {selector: '.slds-is-active', restrict: '.slds-page_header__item'},
-  {selector: '.slds-is-active', restrict: '.slds-tabs__item'}
+  { selector: '.slds-button', restrict: 'button, a' },
+  { selector: '.slds-button--brand', restrict: '.slds-button' },
+  { selector: '.slds-button--reset', restrict: '[class~=slds-button]' },
+  { selector: '.slds-button--destructive' },
+  { selector: '.slds-is-selected', restrict: '.slds-button_icon' },
+  { selector: '.slds-is-selected', restrict: '.slds-button_stateful' },
+  { selector: '.slds-is-active', restrict: '.slds-page_header__item' },
+  { selector: '.slds-is-active', restrict: '.slds-tabs__item' }
 ]
 
 const validate = createValidator(validations)

@@ -1,9 +1,9 @@
-const {applyModifiers, removeModifiers} = require('../server')
+const { applyModifiers, removeModifiers } = require('../server')
 
 const modifiers = [
-  {selector: '.slds-button--reset', restrict: '[class~=slds-button]'},
-  {selector: '.slds-button--brand', restrict: '.slds-button', group: 'theme'},
-  {selector: '.slds-button--destructive', restrict: '.slds-button', group: 'theme'}
+  { selector: '.slds-button--reset', restrict: '[class~=slds-button]' },
+  { selector: '.slds-button--brand', restrict: '.slds-button', group: 'theme' },
+  { selector: '.slds-button--destructive', restrict: '.slds-button', group: 'theme' }
 ]
 
 describe('modifiers', () => {
@@ -44,7 +44,7 @@ describe('modifiers', () => {
         <button class="slds-button" />
       </div>
     `
-    const results = applyModifiers([modifiers[1]], html, {single: true})
+    const results = applyModifiers([modifiers[1]], html, { single: true })
     expect(results.markup).toEqual(`
       <div>
         <button class="slds-button slds-button--brand">
@@ -52,5 +52,4 @@ describe('modifiers', () => {
       </button></div>
     `)
   })
-
 })
